@@ -8,7 +8,7 @@
     tools:context=".MainActivity">
 
     <Button
-        android:id="@+id/add_btn"
+        android:id="@+id/addcar_btn1"
         android:layout_width="100dp"
         android:layout_height="80dp"
         android:background="@drawable/round_button"
@@ -23,7 +23,7 @@
         app:layout_constraintVertical_bias="0.743" />
 
     <Button
-        android:id="@+id/check_btn"
+        android:id="@+id/checkcar_btn"
         android:layout_width="100dp"
         android:layout_height="80dp"
         android:background="@drawable/round_button"
@@ -37,17 +37,18 @@
         app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintVertical_bias="0.743" />
 
-    <ImageView
+    <com.google.android.material.imageview.ShapeableImageView
         android:id="@+id/car_logo"
-        android:layout_width="242dp"
-        android:layout_height="283dp"
+        android:layout_width="250dp"
+        android:layout_height="250dp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.497"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintVertical_bias="0.263"
-        app:srcCompat="@drawable/car_logo" />
+        app:srcCompat="@drawable/car_logo"
+        app:shapeAppearanceOverlay="@style/circular"/>
 
     <TextView
         android:id="@+id/homepage_txt"
