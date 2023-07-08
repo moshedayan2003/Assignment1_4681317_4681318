@@ -10,7 +10,6 @@ import android.widget.EditText;
 
 public class MainActivity extends AppCompatActivity implements View.OnClickListener {
 
-    //DatabaseHelper dbhelper;
      Button addcar_btn1, checkcar_btn;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
