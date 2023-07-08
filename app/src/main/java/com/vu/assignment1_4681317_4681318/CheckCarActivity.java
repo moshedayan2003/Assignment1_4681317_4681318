@@ -2,24 +2,23 @@ package com.vu.assignment1_4681317_4681318;
 
 import androidx.appcompat.app.AppCompatActivity;
 
-import android.database.Cursor;
-import android.database.sqlite.SQLiteDatabase;
 import android.os.Bundle;
-import android.text.TextUtils;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.TextView;
 import android.widget.Toast;
 
-public class CheckCarActivity extends AppCompatActivity {
+import com.vu.assignment1_4681317_4681318.data.DatabaseHelper;
 
-    private EditText carbrand_et;
-    private EditText carmodel_et;
-    private TextView carprice_et;
-    private Button checkprice_btn;
+public class CheckCarActivity extends AppCompatActivity implements View.OnClickListener {
 
-    private DatabaseHelper dbHelper;
+    EditText carbrand_et2;
+    EditText carmodel_et2;
+    TextView carprice_et2;
+    Button checkprice_btn;
+
+    public DatabaseHelper dbHelper;
 
     @Override
 
@@ -31,51 +30,49 @@ public class CheckCarActivity extends AppCompatActivity {
 
         dbHelper = new DatabaseHelper(this);
 
-        carbrand_et = findViewById(R.id.carbrand_et);
-        carmodel_et = findViewById(R.id.carmodel_et);
-        carprice_et = findViewById(R.id.carprice_et);
+        carbrand_et2 = findViewById(R.id.carbrand_et2);
+        carmodel_et2 = findViewById(R.id.carmodel_et2);
+        carprice_et2 = findViewById(R.id.carprice_et2);
         checkprice_btn = findViewById(R.id.checkprice_btn);
 
-        checkprice_btn.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                String brand = carbrand_et.getText().toString().trim();
-                String model = carmodel_et.getText().toString().trim();
+        //checkprice_btn.setOnClickListener(new View.OnClickListener() {
+        checkprice_btn.setOnClickListener(this);
 
-                if (TextUtils.isEmpty(brand) || TextUtils.isEmpty(model)){
-                    Toast.makeText(CheckCarActivity.this, "Please enter car brand and model", Toast.LENGTH_SHORT).show();
 
-                }else {
-                    checkCarPrice(brand, model);
-                }
-            }
-        });
     }
+    private void displayPrice() {
+        String brand = carbrand_et2.getText().toString().trim();
+        String model = carmodel_et2.getText().toString().trim();
 
-    private void checkCarPrice(String brand, String model){
-        SQLiteDatabase db = dbHelper.getReadableDatabase();
-
-        String[] projection = {"price"};
-        String selection = "brand = ? AND model = ?";
-        String[] selectionArgs = {brand, model};
-
-        Cursor cursor = db.query("car", projection, selection, selectionArgs, null, null, null);
-
-        if(cursor.moveToFirst()){
-            String price = cursor.getString(cursor.getColumnIndexOrThrow("price"));
-            carprice_et.setText(price);
-        }else{
-            carprice_et.setText("");
-            Toast.makeText(this, "Car not found", Toast.LENGTH_SHORT).show();
+        if(brand.isEmpty())
+        {
+            Toast.makeText(this, "Please enter brand name!", Toast.LENGTH_SHORT).show();
+            return;
         }
 
-        cursor.close();
+        if(model.isEmpty())
+        {
+            Toast.makeText(this, "Please enter model name!", Toast.LENGTH_SHORT).show();
+            return;
+        }
 
+        int price = dbHelper.getPrice(brand,model);
+
+        if(price == -1){
+            Toast.makeText(this, "Car not found. Please enter the brand and model again!",Toast.LENGTH_SHORT).show();
+            carprice_et2.setText("");
+        }
+        else {
+            carprice_et2.setText(String.valueOf(price));
+        }
     }
 
-    protected void onDestroy(){
-        dbHelper.close();
-        super.onDestroy();
-
+    @Override
+    public void onClick(View v) {
+        int id =v.getId();
+        if(id == R.id.checkprice_btn)
+        {
+            displayPrice();
+        }
     }
 }

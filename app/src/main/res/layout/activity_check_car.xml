@@ -52,7 +52,7 @@
         app:layout_constraintTop_toTopOf="parent" />
 
     <EditText
-        android:id="@+id/carbrand_et"
+        android:id="@+id/carbrand_et2"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:background="@drawable/edit_text_background"
@@ -81,7 +81,7 @@
         app:layout_constraintVertical_bias="0.6" />
 
     <EditText
-        android:id="@+id/carmodel_et"
+        android:id="@+id/carmodel_et2"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:background="@drawable/edit_text_background"
@@ -126,7 +126,7 @@
         app:layout_constraintVertical_bias="0.9" />
 
     <EditText
-        android:id="@+id/carprice_et"
+        android:id="@+id/carprice_et2"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:background="@drawable/edit_text_background"

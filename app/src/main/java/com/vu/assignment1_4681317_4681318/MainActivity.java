@@ -10,13 +10,13 @@ import android.widget.EditText;
 
 public class MainActivity extends AppCompatActivity implements View.OnClickListener {
 
-    DatabaseHelper dbhelper;
+    //DatabaseHelper dbhelper;
      Button addcar_btn1, checkcar_btn;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
-        dbhelper = new DatabaseHelper(this);
+        //dbhelper = new DatabaseHelper(this);
 
         addcar_btn1 = (Button) findViewById(R.id.addcar_btn1);
         checkcar_btn = (Button) findViewById(R.id.checkcar_btn);
